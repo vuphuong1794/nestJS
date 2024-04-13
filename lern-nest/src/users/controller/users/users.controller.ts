@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Param, Post, Query, UsePipes, ValidationPipe } from '@nestjs/common';
+import { Body, Controller, Get, Param, ParseIntPipe, Post, Query, UsePipes, ValidationPipe } from '@nestjs/common';
 
 import { CreateUserDto } from 'src/users/dtos/createUser.dto';
 
@@ -46,8 +46,9 @@ export class UsersController {
     return userData;
   }
 
+  //ParseIntPipe: kiem tra xem ng dung co nhap dung dinh dang hay khong
   @Get(':id')
-  getUserById(@Param('id') id: string) {
+  getUserById(@Param('id', ParseIntPipe) id: number) {
     return { id };
   }
 }
