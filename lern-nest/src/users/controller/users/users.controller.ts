@@ -1,14 +1,25 @@
-import { Body, Controller, Get, Param, ParseIntPipe, Post, Query, UsePipes, ValidationPipe } from '@nestjs/common';
+import { UsersService } from './../../services/users/users.service';
+import {
+  Body,
+  Controller,
+  Get,
+  Param,
+  ParseIntPipe,
+  Post,
+  UsePipes,
+  ValidationPipe,
+} from '@nestjs/common';
 
 import { CreateUserDto } from 'src/users/dtos/createUser.dto';
 
 @Controller('users')
 export class UsersController {
+  constructor(private userService: UsersService) {}
+
   //GET
   @Get()
-  getUsers(@Query('sortBy') sortBy: string) {
-    console.log(sortBy);
-    return [{ username: 'phuong', email: 'phuong@gmail.com' }];
+  getUsers() {
+    return this.userService.fetchUsers();
   }
 
   //"users/post"
@@ -43,7 +54,7 @@ export class UsersController {
   @UsePipes(new ValidationPipe())
   addUser(@Body() userData: CreateUserDto) {
     console.log(userData);
-    return userData;
+    return this.userService.createUser(userData);
   }
 
   //ParseIntPipe: kiem tra xem ng dung co nhap dung dinh dang hay khong
