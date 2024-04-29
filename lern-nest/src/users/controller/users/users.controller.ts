@@ -3,6 +3,8 @@ import {
   Body,
   Controller,
   Get,
+  HttpException,
+  HttpStatus,
   Param,
   ParseIntPipe,
   Post,
@@ -16,7 +18,7 @@ import { CreateUserDto } from 'src/users/dtos/createUser.dto';
 export class UsersController {
   constructor(private userService: UsersService) {}
 
-  //GET
+  //GET All USER
   @Get()
   getUsers() {
     return this.userService.fetchUsers();
@@ -44,6 +46,7 @@ export class UsersController {
   }
 
   //POST
+  //CREATE USER
   @Post('create')
   /*
   postUser(@Req() request: Request, @Res() respone: Response) {
@@ -60,6 +63,9 @@ export class UsersController {
   //ParseIntPipe: kiem tra xem ng dung co nhap dung dinh dang hay khong
   @Get(':id')
   getUserById(@Param('id', ParseIntPipe) id: number) {
-    return { id };
+    const user = this.userService.fetchUserById(id);
+    if (!user)
+      throw new HttpException('User not found', HttpStatus.BAD_REQUEST);
+    return user;
   }
 }
