@@ -56,7 +56,7 @@ export class UsersController {
   }
   */
   @UsePipes(new ValidationPipe())
-  //su dung custom pipes de chuyen age tu string sang int va kiem tra
+  //su dung custom pipes de chuyen kieu age tu string sang int va kiem tra
   //su dung custom pipe cho age vi trong validation pipe cua user co phuong thuc IsNumber nhung chi duoc phep nhap Number con string thi bao loi
   //doi voi custom pipe thi du nguoi dung cho nhap "24" no chuyen dang sang number ma khong bao loi
   addUser(@Body(ValidateCreateUserPipe) userData: CreateUserDto) {
