@@ -13,6 +13,7 @@ import {
 } from '@nestjs/common';
 
 import { CreateUserDto } from 'src/users/dtos/createUser.dto';
+import { ValidateCreateUserPipe } from 'src/users/pipes/validate-create-user.pipe';
 
 @Controller('users')
 export class UsersController {
@@ -55,8 +56,11 @@ export class UsersController {
   }
   */
   @UsePipes(new ValidationPipe())
-  addUser(@Body() userData: CreateUserDto) {
-    console.log(userData);
+  //su dung custom pipes de chuyen age tu string sang int va kiem tra
+  //su dung custom pipe cho age vi trong validation pipe cua user co phuong thuc IsNumber nhung chi duoc phep nhap Number con string thi bao loi
+  //doi voi custom pipe thi du nguoi dung cho nhap "24" no chuyen dang sang number ma khong bao loi
+  addUser(@Body(ValidateCreateUserPipe) userData: CreateUserDto) {
+    console.log(userData.age.toPrecision());
     return this.userService.createUser(userData);
   }
 
