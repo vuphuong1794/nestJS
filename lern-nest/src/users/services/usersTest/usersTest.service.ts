@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { CreateUserType } from 'src/utils/type';
 
 @Injectable()
-export class UsersService {
+export class UsersServiceTest {
   private fakeUsers = [
     { username: 'phuong', email: 'phuong@gmail.com' },
     { username: 'minh', email: 'minh@gmail.com' },

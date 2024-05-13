@@ -4,14 +4,15 @@ import {
   NestModule,
   RequestMethod,
 } from '@nestjs/common';
-import { UsersController } from './controller/users/users.controller';
-import { UsersService } from './services/users/users.service';
+import { UsersControllerTest } from './controller/usersTest/usersTest.controller';
+import { UsersServiceTest } from './services/usersTest/usersTest.service';
 import { ExampleMiddleware } from './middlewares/example/example.middleware';
 import { Example2Middleware } from './middlewares/example2/example2.middleware';
 
 @Module({
-  controllers: [UsersController],
-  providers: [UsersService],
+  imports: [],
+  controllers: [UsersControllerTest],
+  providers: [UsersServiceTest],
 })
 
 //ap dung middleware cho tat ca routes cua users

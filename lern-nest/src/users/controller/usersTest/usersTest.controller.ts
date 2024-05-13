@@ -1,4 +1,4 @@
-import { UsersService } from './../../services/users/users.service';
+import { UsersServiceTest } from '../../services/usersTest/usersTest.service';
 import {
   Body,
   Controller,
@@ -12,12 +12,12 @@ import {
   ValidationPipe,
 } from '@nestjs/common';
 
-import { CreateUserDto } from 'src/users/dtos/createUser.dto';
+import { CreateUserDto } from 'src/users/dtos/CreateUser.dto';
 import { ValidateCreateUserPipe } from 'src/users/pipes/validate-create-user.pipe';
 
-@Controller('users')
-export class UsersController {
-  constructor(private userService: UsersService) {}
+@Controller('usersTest')
+export class UsersControllerTest {
+  constructor(private userService: UsersServiceTest) {}
 
   //GET All USER
   @Get()
